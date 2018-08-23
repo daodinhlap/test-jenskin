@@ -35,7 +35,7 @@ public class JobExportCsv {
 
 	public JobExportCsv() {
 		System.out.println("\n ---> Init Job Policy Bean \n");
-		System.out.println("\n\n----->     start job");
+		System.out.println("\n\n----->     start job------------------");
 	}
 
 	@Scheduled(cron = "*/10 * *  * * *")
