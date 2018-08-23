@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+    http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<bean id="httpClient" factory-bean="httpClientBuilder"
+		factory-method="build" />
+
+	<bean id="httpClientBuilder"
+		class="org.apache.http.impl.client.HttpClientBuilder"
+		factory-method="create">
+		<property name="defaultRequestConfig" ref="requestConfig" />
+		<property name="retryHandler"
+			ref="defaultHttpRequestRetryHandler" />
+	</bean>
+
+	<bean id="requestConfig" factory-bean="requestConfigBuilder"
+		factory-method="build" />
+
+	<bean id="defaultHttpRequestRetryHandler"
+		class="org.apache.http.impl.client.DefaultHttpRequestRetryHandler">
+		<constructor-arg type="int" value="5" />
+		<constructor-arg type="boolean" value="true" />
+	</bean>
+
+	<bean id="requestConfigBuilder"
+		class="org.apache.http.client.config.RequestConfig"
+		factory-method="custom">
+		<property name="socketTimeout" value="30000" />
+		<property name="connectTimeout" value="30000" />
+	</bean>
+
+	<bean id="slackWarning"
+		class="com.lapdao.service.impl.SlackServiceImpl">
+		<constructor-arg index="0"
+			value="https://hooks.slack.com/services/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" />
+			
+	</bean>
+</beans>
+
