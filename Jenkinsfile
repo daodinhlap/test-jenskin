@@ -1,3 +1,5 @@
+
+@Library('jenkins-shared-library')_
 pipeline {
     agent any
     stages {
@@ -10,7 +12,7 @@ pipeline {
 	post {
         always {
 	    /* Use slackNotifier.groovy from shared library and provide current build result as parameter */   
-            slackNotifier(currentBuild.currentResult)
+            slackSend (color: '#FFFF00', message: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
             cleanWs()
         }
     }
