@@ -21,17 +21,16 @@ pipeline {
            sh 'curl -X POST -H 'Content-type: application/json' --data '{"text": "Application: I succeeeded ! " }' https://hooks.slack.com/services/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;
         }
         unstable {
-            echo 'I am unstable :/'
+            echo 'I am unstable :'
         }
         failure {
-            echo 'I failed :('
+            echo 'I failed :'
            sh 'curl -X POST -H 'Content-type: application/json' --data '{"text": "Application: I faild ! " }' https://hooks.slack.com/services/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'
             
         }
         changed {
             echo 'Things were different before...'
         }
-    }
-    
-    
+    } 
+}
 }
