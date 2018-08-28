@@ -11,7 +11,7 @@ pipeline {
 	post {
         always {
 	    /* Use slackNotifier.groovy from shared library and provide current build result as parameter */   
-            slackSend (color: '#FFFF00', message: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL}), ${GIT_COMMIT},${env.BRANCH_NAME},$BUILD_STATUS,<b>'HH:mm:ss'</b>")
+            slackSend (color: '#FFFF00', message: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL}), ${GIT_COMMIT},${env.BRANCH_NAME},${env.BUILD_STATUS},<b>'HH:mm:ss'</b>")
             cleanWs()
         }
          success {
